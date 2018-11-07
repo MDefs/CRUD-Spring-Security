@@ -14,13 +14,15 @@ public class User {
     @NotEmpty
     @Column(unique = true)
     private String email;
+
+    @NotEmpty
+    private String birthDay;
+
     @NotEmpty
     private String name;
+
     @Size(min = 4)
     private String password;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Task> tasks;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES",
@@ -62,14 +64,6 @@ public class User {
         this.password = password;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     public List<Role> getRoles() {
         return roles;
     }
@@ -77,4 +71,13 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
+
 }

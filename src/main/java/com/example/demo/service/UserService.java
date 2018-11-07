@@ -26,16 +26,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void createAdmin(User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
-        Role userRole = new Role("ADMIN");
-        List<Role> roles = new ArrayList<>();
-        roles.add(userRole);
-        user.setRoles(roles);
-        userRepository.save(user);
-    }
-
     public User findOne(String email) {
 //        return userRepository.findById(email).get();
         return userRepository.findById(email).orElse(null);
@@ -47,10 +37,6 @@ public class UserService {
         if (user != null) return true;
 
         return false;
-    }
-
-    public List<User> findAll() {
-        return userRepository.findAll();
     }
 
     public List<User> findByName(String name) {

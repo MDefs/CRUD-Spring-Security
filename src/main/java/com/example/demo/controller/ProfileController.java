@@ -1,7 +1,6 @@
 package com.unstoppable.myblog.controller;
 
 import com.unstoppable.myblog.entity.User;
-import com.unstoppable.myblog.service.TaskService;
 import com.unstoppable.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,6 @@ import java.security.Principal;
 public class ProfileController {
 
     @Autowired
-    private TaskService taskService;
-    @Autowired
     private UserService userService;
 
     @GetMapping("/profile")
@@ -24,7 +21,7 @@ public class ProfileController {
         String email = principal.getName();
         User user = userService.findOne(email);
 
-        model.addAttribute("task", taskService.findUserTask(user));
+        model.addAttribute("task", user);
 
         return "view/profile";
     }
